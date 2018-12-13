@@ -1,0 +1,142 @@
+
+.title{
+  font-family: lato;
+  font-size:5em;
+  color:#5A6978;
+  padding-left:20px;
+  padding-top:10px;
+}
+
+body{
+    margin-left: 10px; 
+    margin-right: 10px; 
+
+}
+
+#footer{
+  padding:0px;
+  background-color:#343f4b ;
+  height:8em;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  position: fixed;
+  
+
+}
+
+.pinned_sounds{
+     margin-left: 10px; 
+    margin-right: 10px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    height: 85%;
+    width: 85%;
+
+}
+
+.footer_icon{
+    color: white;
+    font-size:100%;
+}
+
+.pinned_div{
+    margin-left: 10px; 
+    margin-right: 10px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    height: 70%;
+    width: 70%;
+    text-align: center;
+
+
+}
+
+
+
+.categories_icon{
+    margin-left: 10px; 
+    margin-right: 10px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    height: 85%;
+    width: 85%; 
+}
+
+
+.categories_div{
+    margin-left: 10px; 
+    margin-right: 10px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    height: 70%;
+    width: 70%;
+    text-align: center
+}
+
+
+.pinned_div {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.pinned_div:hover, .pinned_div:focus, .pinned_div:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.block-pinned{
+
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color: white;
+  position: sticky;
+ 
+
+}
+
+.block-categories{
+  margin:0px;
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color: white;
+
+}
+
+.block-header {
+  margin:0px;
+  background-color: white;
+
+}
+
+span{
+   font-family: lato;
+  font-size:3em;
+  color:#5A6978;
+
+}
+
+#nav-bar_table{
+  margin-top:2em;
+}
+
+div#categories{
+  font-family: lato;
+}
+
+.categories_td{
+  padding-right: 20px;
+  padding-left: 20px;
+  font-family : lato;
+  font-size:10em;
+  color:#5A6978;
+
+}

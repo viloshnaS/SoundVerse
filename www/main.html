@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Sound Verse</title>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="js/main.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script>
+            function playPinned(audioname){
+                var audio = document.getElementById(audioname);
+                
+                if (audio.paused) {
+                    audio.play();
+                }else{
+                    audio.pause();
+                    audio.currentTime = 0
+                }
+               
+            }
+
+            function play(id){
+                var audio = document.getElementById("audio"+id);
+                
+                if (audio.paused) {
+                    $("#play"+id).prop('src','img/pause.png');
+                    audio.play();
+                    audio.onended = function() {
+                      $("#play"+id).prop('src','img/play.png');
+                    };
+                    
+                   
+
+                }else{
+                    audio.pause();
+                    $("#play"+id).attr("src","img/play.png");
+                    audio.currentTime = 0
+                }
+               
+            }
+
+
+            $(document).ready(function(){
+
+                $("#block-audio-categories").hide();
+                displayPinnedAudios();
+                displayCategoriesIcons();
+
+                $(".categories_div").click(function(){
+
+                    var selected_category = jQuery(this).attr("id");
+                    displayCategory(selected_category );
+                });
+
+              
+            });
+
+            function displayCategoryIcons(){
+                $("#block-categories").show();
+                $(".pinned_hidden_div").show();
+                $("#block-audio-categories").hide();
+
+            }
+
+            function displayPinnedAudios(){
+
+                var displayStr = "";
+                var i =0;
+
+                while(i < pinned_sounds.length){
+
+                    if(i >0){
+                        displayStr +="<div class='pinned_hidden_div'>";
+                    }
+
+                    displayStr +="<table>";
+                    displayStr +="<tr style='text-align:center'>";
+
+                    var displayLabels ="<tr style='text-align:center'>";
+                    for(var j=i ; j<i+4;j++){
+
+
+                         if(j == pinned_sounds.length){
+                            break;
+                         }
+
+                        displayStr +="<td>";
+                        displayStr +="<div class='pinned_div' style='background-color:"+pinned_sounds[j].color+"' id='"+pinned_sounds[j].audio_id+"'>";
+                        displayStr +="<img class='pinned_sounds' src='"+pinned_sounds[j].audio_picture+"' onClick=\"playPinned('pinnedaudio"+pinned_sounds[j].audio_id+"')\">";
+                        displayStr += " <audio id='pinnedaudio"+pinned_sounds[j].audio_id+"' src='"+pinned_sounds[j].audio_path+"' ></audio>";
+                        displayStr +="</div>";
+                         displayStr +="</td>";
+
+                         displayLabels += "<td><span>"+pinned_sounds[j].audio_name+"</span></td>";
+
+                    }
+
+                    displayLabels +="</tr>";
+                    displayStr +="</tr>";
+                    displayStr += displayLabels;
+
+                    displayStr +="</table>";
+                    if(i >0){
+                        displayStr +="</div>";
+                    }
+
+                    i +=4;
+
+                    
+                }
+
+                $("#pinnedAudioList").html(displayStr);
+
+            }
+
+            function displayCategory(selected_category ){
+
+                    var display_cat ="<table width ='100%' style='text-align:center' id='categories_table'>";
+                    display_cat += "<tr>";
+                    
+                   
+                    var i = 0;
+                    while (i < audios.length){
+
+                        display_cat += "<td class='category_title'><span class='cat_span' onClick='displayCategory("+audios[i].category_id+")'>"+audios[i].category_name+"</span></td>";
+                        i++;
+
+                    }
+                    
+                    display_cat += "</tr>"
+                    display_cat +="</table>";
+                    
+                   
+                    $("#block-categories").hide();
+                    $(".pinned_hidden_div").hide();
+                    $("#block-audio-categories").show();
+                    $("#categories").html(display_cat);
+
+                    displayAudioList(selected_category);
+
+            }
+
+            function displayAudioList(catId){
+
+
+                    
+                var audioList = audios[catId-1];
+                 
+                 var audioDisplay = "<table width ='90%' id='audios_table'>";
+            
+                 var soundsList = audioList.Sounds;
+                 
+                 for(var i=0;i<soundsList.length;i++){
+
+                    audio = soundsList[i];
+                    var flag = false;
+
+                    if(connection_status == 0){ //offline
+
+                        if(audio.downloaded == 1){
+                            flag = true;
+                        }
+                    }
+
+                    else{
+                        flag = true;
+                    }
+
+                    if(flag){
+                        audioDisplay += "<tr>";
+                        audioDisplay += "<td style='padding-right:40px'><input type='checkbox'/></td>";
+                        audioDisplay += "<td><span>"+audio.audio_name+"</span></td>";
+                        audioDisplay += "<td style='width:100px'><img src='img/play.png' id='play"+audio.audio_id+"' class='audio_icon' onClick=\"play('"+audio.audio_id+"')\"/></td>";
+                         audioDisplay += " <audio id='audio"+audio.audio_id+"' src='"+audio.audio_path+"' ></audio>";
+                        audioDisplay += "<td style='width:100px'><img src='img/play-button.png' class='audio_icon'/></td>";
+                        audioDisplay += "<td style='width:100px'><img src='img/sort-down.png' class='audio_icon'/></td>";
+                        audioDisplay += "</tr>";
+                    }
+                }
+
+
+                audioDisplay += "<tr>";
+                audioDisplay += "<td colspan='5'><span>More</span></td>";
+                audioDisplay += "</tr>";
+
+
+                 audioDisplay += "</table>";
+
+                $("#audio_div").html(audioDisplay);
+
+              
+
+
+            }
+
+            function displayCategoriesIcons(){
+
+                var displayStr = "";
+                var i =0;
+
+                while(i < audios.length){
+
+
+
+                    displayStr +="<table>";
+                    displayStr +="<tr style='text-align:center'>";
+
+                    var displayLabels ="<tr style='text-align:center'>";
+                    for(var j=i ; j<i+3;j++){
+                        
+                        displayStr +="<td>";
+                        displayStr +="<div class='categories_div' style='background-color:"+audios[j].color+"' id='"+audios[j].category_id+"'>";
+                        displayStr +="<img class='categories_icon' src='"+audios[j].picture+"'>";
+                        displayStr +="</div>";
+                         displayStr +="</td>";
+
+                         displayLabels += "<td><span>"+audios[j].category_name+"</span></td>";
+
+                         if(j == audios.length){
+                            break;
+                         }
+
+                    }
+
+                    i +=3;
+
+                    displayLabels +="</tr>";
+                    displayStr +="</tr>";
+                    displayStr += displayLabels;
+
+                    displayStr +="</table>";
+                }
+
+                $("#categoriesList").html(displayStr);
+
+            }
+
+        </script>
+    </head>
+    <body style="background-color:#EAEBED">
+
+    <div class="row">
+         <div class="block-pinned">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title">
+                        Pinned Sounds
+                    </h3>
+                </div>
+            </div>
+            <div id = "pinnedAudioList">
+        
+        </div>
+
+        </div>
+    </div>
+</div>
+
+        <br/>
+        
+        
+     <div class="row">
+         <div class="block-categories" id="block-categories">
+        <div class="col-md-12">
+        
+            <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3 class="title">
+                        Categories
+                    </h3>
+                </div>
+            </div>
+        </div>
+          
+        <div id="categoriesList">
+        <table>
+            <tr style="text-align:center">
+                <td>
+                    <div class="categories_div" style="background-color: #3498DB;" id="1">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #8E44AD;" id="2">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: #009688;" id="3">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+                
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Animals</span> </td>
+                    <td><span>Bells</span> </td>
+                    <td><span>Instruments</span> </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table>
+                <tr>
+                    <td>
+                    <div class="categories_div" style="background-color: #F1C40F;" id="4">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #C0392B;" id="5">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: yellow;" id="6">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+                
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Multimedia</span> </td>
+                    <td><span>Nature</span> </td>
+                    <td><span>Emergency</span> </td>
+                </tr>
+            </table>
+            <br/>
+            <table>
+                <tr>
+                    <td>
+                    <div class="categories_div" style="background-color: #F1C40F;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #C0392B;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: yellow;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+      
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Sports</span> </td>
+                    <td><span>Nature</span> </td>
+                    <td><span>Theatre</span> </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        </div>
+    </div>
+
+    <div class="block-audio-categories" id="block-audio-categories">
+        <div class="col-md-12">
+            
+                <div id="categories">
+                </div>
+                <hr onClick="displayCategoryIcons();"/>
+                 <div id="audio_div">
+                </div>
+        </div>
+    </div>
+    </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+        <div id="menu">
+
+                 <div data-role="footer" id="footer" data-position="fixed">
+                
+                    <table width='100%' id="nav-bar_table">
+                        <tr>
+                        <td align="center"><a href="main.html"  id="menu-toggle"><i class='material-icons footer_icon'>home</i></a> </td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>play_arrow</i></a></td>
+                        <td align="center"><a href="#" id="profile"><i class='material-icons footer_icon'>                         search</i></a></td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>library_music</i></a></td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>settings</i></a></td>
+                        </tr>
+                    </table>
+           
+                </div>
+        </div>
+
+
+
+    </body>
+</html>

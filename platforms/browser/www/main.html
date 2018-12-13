@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Sound Verse</title>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="js/main.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script>
+            function play(audioname){
+                var audio = document.getElementById(audioname);
+                if (audio.paused) {
+                    audio.play();
+                }else{
+                    audio.pause();
+                    audio.currentTime = 0
+                }
+               
+            }
+
+            $(document).ready(function(){
+
+                $(".categories_div").click(function(){
+
+                    var selected_category = jQuery(this).attr("id");
+                    var display_cat ="<table>";
+                    display_cat += "<tr>"
+                    for( var i=0 ;i<categories_id.length;i++){
+                         display_cat += "<td class='categories_td'>"+categories_name[i]+"</td>"
+
+                    }
+                    display_cat += "</tr>"
+                    display_cat +="</table>";
+                    
+                   
+                    $("#block-categories").hide();
+                    $("#categories").html(display_cat);
+
+                    $("#categories").animate({scrollTop:position}, '500', 'swing', function() { 
+   
+                        });
+
+
+                });
+            });
+
+        </script>
+    </head>
+    <body style="background-color:#EAEBED">
+
+    <div class="row">
+         <div class="block-pinned">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="title">
+                        Pinned Sounds
+                    </h3>
+                </div>
+            </div>
+            <table>
+                <tr style="text-align:center">
+                    <td>
+                    <div class="pinned_div" style="background-color: #F1C40F;" onclick="play('audio1')">
+                    <img class="pinned_sounds" src="img/football.png">
+                    <audio id="audio1" src="audio/service_bell.mp3" ></audio>
+ 
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="pinned_div" style="background-color: #8E44AD;" onclick="play('audio2')">
+                    <img class="pinned_sounds" src="img/guitar.png">
+                    <audio id="audio2" src="audio/service_bell.mp3" ></audio>
+                    </div>
+             </td>
+                 <td>
+                    <div class="pinned_div" style="background-color: #009688;" onclick="play('audio3')">
+                    <img class="pinned_sounds" src="img/notification.png">
+                    <audio id="audio3" src="audio/service_bell.mp3" ></audio>
+                    </div>
+               
+                 </td>
+                 <td>
+                    <div class="pinned_div" style="background-color: #C0392B;" onclick="play('audio4')">
+                    <img class="pinned_sounds" src="img/siren.png">
+                    <audio id="audio4" src="audio/service_bell.mp3" ></audio>
+                    </div>
+                </td>
+                   
+                </tr>
+
+                <tr style="text-align: center">
+                     <td><span>Laughter</span> </td>
+                    <td><span>Cow</span> </td>
+                    <td><span>Bell</span> </td>
+                    <td><span>Wind</span></td>
+                </tr>
+                </table>
+                <table>
+                <tr style="text-align:center">
+                    <td>
+                    <div class="pinned_div" style="background-color: #3498DB;" onclick="play('audio5')">
+                    <img class="pinned_sounds" src="img/thunderstorm.png">
+                    <audio id="audio5" src="audio/service_bell.mp3" ></audio>
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="pinned_div" style="background-color: #009688;" onclick="play('audio6')">
+                    <img class="pinned_sounds" src="img/cinema.png">
+                    <audio id="audio6" src="audio/service_bell.mp3" ></audio>
+                    </div>
+             </td>
+                 <td>
+                    <div class="pinned_div" style="background-color: #F1C40F;" onclick="play('audio7')">
+                    <img class="pinned_sounds" src="img/car.png">
+                    <audio id="audio7" src="audio/service_bell.mp3" ></audio>
+                    </div>
+               
+                 </td>
+                 <td>
+                    <div class="pinned_div" style="background-color: orange;" onclick="play('audio8')">
+                    <img class="pinned_sounds" src="img/football.png">
+                    <audio id="audio8 src="audio/service_bell.mp3" ></audio>
+                    </div>
+                </td>
+
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Laughter</span> </td>
+                    <td><span>Cow</span> </td>
+                    <td><span>Bell</span> </td>
+                    <td><span>Wind</span></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+        <br/>
+        
+        
+     <div class="row">
+         <div class="block-categories" id="block-categories">
+        <div class="col-md-12">
+        
+            <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3 class="title">
+                        Categories
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        
+        <table>
+            <tr style="text-align:center">
+                <td>
+                    <div class="categories_div" style="background-color: #3498DB;" id="1">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #8E44AD;" id="2">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: #009688;" id="3">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+                
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Animals</span> </td>
+                    <td><span>Nature</span> </td>
+                    <td><span>Bells</span> </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table>
+                <tr>
+                    <td>
+                    <div class="categories_div" style="background-color: #F1C40F;" id="4">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #C0392B;" id="5">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: yellow;" id="6">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+                
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Animals</span> </td>
+                    <td><span>Nature</span> </td>
+                    <td><span>Bells</span> </td>
+                </tr>
+            </table>
+            <br/>
+            <table>
+                <tr>
+                    <td>
+                    <div class="categories_div" style="background-color: #F1C40F;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+                </td>
+                
+                  <td>
+                    <div class="categories_div" style="background-color: #C0392B;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+             </td>
+                 <td>
+                    <div class="categories_div" style="background-color: yellow;">
+                    <img class="categories_icon" src="img/football.png">
+                    </div>
+               
+                 </td>
+                
+                   
+                </tr>
+
+                 <tr style="text-align: center">
+                    <td><span>Animals</span> </td>
+                    <td><span>Nature</span> </td>
+                    <td><span>Bells</span> </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+         <div class="row">
+        <div class="block-categories" id="audio-categories">
+
+        <div class="col-md-12">
+        
+            <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3 class="title">
+                        Categories
+                    </h3>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="categories">
+        </div>
+           
+               
+        </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+        <div id="menu">
+
+                 <div data-role="footer" id="footer" data-position="fixed">
+                
+                    <table width='100%' id="nav-bar_table">
+                        <tr>
+                        <td align="center"><a href="main.html"  id="menu-toggle"><i class='material-icons footer_icon'>home</i></a> </td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>play_arrow</i></a></td>
+                        <td align="center"><a href="#" id="profile"><i class='material-icons footer_icon'>                         search</i></a></td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>library_music</i></a></td>
+                        <td align="center"><a href="#" id="inbox"><i class='material-icons footer_icon'>settings</i></a></td>
+                        </tr>
+                    </table>
+             
+            
+                </div>
+        </div>
+
+
+
+    </body>
+</html>
