@@ -22,11 +22,11 @@ var audios =[
 		"color":"#3498DB",
 		"picture":"img/football.png",
 		"Sounds":[
-		{	"audio_id": "2", "audio_name":"Cat Meow 1", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Cat.wav","downloaded":1},
-		{	"audio_id": "3", "audio_name":"Dog Bark", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Dog.wav","downloaded":1},
-		{	"audio_id": "4", "audio_name":"Horses Walking", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Horses.wav","downloaded":0},
-		{ 	"audio_id": "1", "audio_name":"Bird Chirping in nature", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Bird.wav","downloaded":0},
-		{	"audio_id": "5", "audio_name":"Lamb BAAA", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Lamb.wav","downloaded":1}
+		{	"audio_id": "2", "audio_name":"Cat Meow 1", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Cat.wav","downloaded":1,"favourite":1},
+		{	"audio_id": "3", "audio_name":"Dog Bark", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Dog.wav","downloaded":1,"favourite":0},
+		{	"audio_id": "4", "audio_name":"Horses Walking", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Horses.wav","downloaded":0,"favourite":0},
+		{ 	"audio_id": "1", "audio_name":"Bird Chirping in nature", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Bird.wav","downloaded":0,"favourite":1},
+		{	"audio_id": "5", "audio_name":"Lamb BAAA", "category_id":"1", "audio_picture": "New York", "audio_path": "sound/Animals/Lamb.wav","downloaded":1,"favourite":0}
 		]
 	},
 
